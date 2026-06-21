@@ -2,79 +2,68 @@
 SS DYNAMIC FRIENDLY MARKETS PLACE
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SS DYNAMIC MARKETPLACE</title>
 
 <style>
-
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial,sans-serif;
-}
-
 body{
+font-family:Arial,sans-serif;
+margin:0;
 background:#111;
-color:white;
+color:#fff;
 }
 
 header{
-background:#c00000;
+background:#d60000;
 padding:20px;
 text-align:center;
-font-size:30px;
-font-weight:bold;
 }
 
 .container{
-width:95%;
-max-width:1400px;
+max-width:1200px;
 margin:auto;
 padding:20px;
 }
 
-.card{
-background:#1b1b1b;
+.login-box,
+.admin-panel,
+.shop-section,
+.cart-section{
+background:#1c1c1c;
 padding:20px;
 border-radius:10px;
 margin-bottom:20px;
-border:1px solid #333;
 }
 
-input,select,textarea{
+input,textarea,select{
 width:100%;
 padding:12px;
-margin-top:10px;
-margin-bottom:10px;
+margin:5px 0;
 border:none;
-border-radius:6px;
+border-radius:5px;
 }
 
 button{
-background:#c00000;
+background:#d60000;
 color:white;
-padding:12px;
 border:none;
-border-radius:6px;
+padding:12px;
 cursor:pointer;
-width:100%;
-font-weight:bold;
+border-radius:5px;
 }
 
 button:hover{
-background:red;
+background:#ff0000;
 }
 
 .product-grid{
 display:grid;
-grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:20px;
 }
 
 .product{
-background:#1b1b1b;
+background:#222;
 padding:15px;
 border-radius:10px;
 }
@@ -86,105 +75,74 @@ object-fit:cover;
 border-radius:10px;
 }
 
-.cart-item{
-padding:10px;
-border-bottom:1px solid #444;
-}
-
 .hidden{
 display:none;
 }
-
-.admin-panel{
-display:none;
-}
-
 </style>
 </head>
 
 <body>
 
 <header>
-SS DYNAMIC MARKETPLACE
+<h1>SS DYNAMIC MARKETPLACE</h1>
+<p>Professional Marketplace System</p>
 </header>
 
 <div class="container">
 
-<div class="card">
-
+<div class="login-box">
 <h2>Admin Login</h2>
 
 <input type="text" id="adminid" placeholder="Admin ID">
+<input type="password" id="password" placeholder="Password">
 
-<input type="password" id="adminpass" placeholder="Password">
-
-<button onclick="loginAdmin()">
-LOGIN
-</button>
-
+<button onclick="loginAdmin()">LOGIN</button>
 </div>
 
-<div id="adminPanel" class="admin-panel">
-
-<div class="card">
+<div id="adminPanel" class="admin-panel hidden">
 
 <h2>Add Product</h2>
 
-<input type="text" id="productName" placeholder="Product Name">
+<input type="file" id="image">
 
-<input type="number" id="productPrice" placeholder="Price">
+<input type="text" id="name" placeholder="Product Name">
 
-<input type="text" id="productCategory" placeholder="Category">
+<input type="number" id="price" placeholder="Price">
 
-<input type="text" id="estimateDay" placeholder="Estimate Delivery Day">
+<input type="text" id="category" placeholder="Category">
 
-<input type="file" id="productImage">
+<input type="number" id="days" placeholder="Estimate Days">
 
-<button onclick="addProduct()">
-ADD PRODUCT
-</button>
+<textarea id="description" placeholder="Description"></textarea>
 
-</div>
+<button onclick="addProduct()">ADD PRODUCT</button>
 
 </div>
 
-<div class="card">
+<div class="shop-section">
 
-<h2>Marketplace Products</h2>
+<h2>Product Gallery</h2>
 
-<div id="productGrid" class="product-grid">
-
-</div>
+<div id="gallery" class="product-grid"></div>
 
 </div>
 
-<div class="card">
+<div class="cart-section">
 
 <h2>Shopping Cart</h2>
 
-<div id="cartItems">
+<div id="cart"></div>
 
-</div>
+<hr>
 
-<h3 id="totalPrice">
-Total RM0
-</h3>
+<h3>Customer Information</h3>
 
-</div>
+<input type="text" id="custName" placeholder="Name">
+<input type="text" id="custWhatsapp" placeholder="WhatsApp Number">
+<input type="email" id="custEmail" placeholder="Email">
+<textarea id="custAddress" placeholder="Address"></textarea>
 
-<div class="card">
-
-<h2>Customer Order Form</h2>
-
-<input type="text" id="customerName" placeholder="Name">
-
-<input type="text" id="customerWhatsapp" placeholder="WhatsApp Number">
-
-<input type="email" id="customerEmail" placeholder="Email">
-
-<textarea id="customerAddress" placeholder="Address"></textarea>
-
-<button onclick="sendWhatsAppOrder()">
+<button onclick="sendWhatsappOrder()">
 ORDER VIA WHATSAPP
 </button>
 
@@ -194,74 +152,85 @@ ORDER VIA WHATSAPP
 
 <script>
 
-let products=[];
-let cart=[];
+const ADMIN_ID = "SS DYNAMIC";
+const ADMIN_PASS = "303677";
+
+let products =
+JSON.parse(localStorage.getItem("products")) || [];
+
+let cart = [];
 
 function loginAdmin(){
 
-let id=document.getElementById("adminid").value;
-let pass=document.getElementById("adminpass").value;
+let id =
+document.getElementById("adminid").value;
 
-if(id==="SS DYNAMIC" && pass==="303677"){
+let pass =
+document.getElementById("password").value;
 
-document.getElementById("adminPanel").style.display="block";
+if(id===ADMIN_ID && pass===ADMIN_PASS){
+
+document.getElementById("adminPanel")
+.classList.remove("hidden");
 
 alert("Admin Login Success");
 
 }else{
-
 alert("Invalid Login");
-
 }
-
 }
 
 function generateSKU(){
-
-return "SKU"+Date.now();
-
+return "SKU-" + Date.now();
 }
 
 function generateOrderID(){
-
-return "ORD"+Date.now();
-
+return "ORD-" + Math.floor(Math.random()*99999999);
 }
 
 function addProduct(){
 
-let name=document.getElementById("productName").value;
-let price=document.getElementById("productPrice").value;
-let category=document.getElementById("productCategory").value;
-let estimate=document.getElementById("estimateDay").value;
+let file =
+document.getElementById("image").files[0];
 
-let file=document.getElementById("productImage").files[0];
+if(!file){
+alert("Upload Image");
+return;
+}
 
-if(!file) return;
+let reader = new FileReader();
 
-let reader=new FileReader();
+reader.onload=function(){
 
-reader.onload=function(e){
+let product = {
 
-let product={
+sku: generateSKU(),
 
-id:Date.now(),
+name:
+document.getElementById("name").value,
 
-sku:generateSKU(),
+price:
+document.getElementById("price").value,
 
-name:name,
+category:
+document.getElementById("category").value,
 
-price:price,
+days:
+document.getElementById("days").value,
 
-category:category,
+description:
+document.getElementById("description").value,
 
-estimate:estimate,
-
-image:e.target.result
+image: reader.result
 
 };
 
 products.push(product);
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
 
 renderProducts();
 
@@ -273,36 +242,37 @@ reader.readAsDataURL(file);
 
 function renderProducts(){
 
-let html="";
+let gallery =
+document.getElementById("gallery");
 
-products.forEach(product=>{
+gallery.innerHTML="";
 
-html+=`
+products.forEach((p,index)=>{
+
+gallery.innerHTML += `
 
 <div class="product">
 
-<img src="${product.image}">
+<img src="${p.image}">
 
-<h3>${product.name}</h3>
+<h3>${p.name}</h3>
 
-<p>SKU : ${product.sku}</p>
+<p>SKU: ${p.sku}</p>
 
-<p>Category : ${product.category}</p>
+<p>RM ${p.price}</p>
 
-<p>Estimate : ${product.estimate}</p>
+<p>${p.category}</p>
 
-<h2>RM ${product.price}</h2>
+<p>${p.description}</p>
 
-<button onclick="addToCart(${product.id})">
+<p>Estimate ${p.days} Days</p>
 
-ADD TO CART
-
+<button onclick="addToCart(${index})">
+Add To Cart
 </button>
 
-<button onclick="deleteProduct(${product.id})">
-
-DELETE
-
+<button onclick="deleteProduct(${index})">
+Delete
 </button>
 
 </div>
@@ -311,31 +281,24 @@ DELETE
 
 });
 
-document.getElementById("productGrid").innerHTML=html;
-
 }
 
-function deleteProduct(id){
+function deleteProduct(index){
 
-products=products.filter(x=>x.id!==id);
+products.splice(index,1);
+
+localStorage.setItem(
+"products",
+JSON.stringify(products)
+);
 
 renderProducts();
 
 }
 
-function addToCart(id){
+function addToCart(index){
 
-let item=products.find(x=>x.id===id);
-
-cart.push(item);
-
-renderCart();
-
-}
-
-function removeCart(index){
-
-cart.splice(index,1);
+cart.push(products[index]);
 
 renderCart();
 
@@ -343,80 +306,72 @@ renderCart();
 
 function renderCart(){
 
-let html="";
-let total=0;
+let div =
+document.getElementById("cart");
 
-cart.forEach((item,index)=>{
+div.innerHTML="";
 
-total+=Number(item.price);
+cart.forEach((p,i)=>{
 
-html+=`
-
-<div class="cart-item">
-
-${item.name}
-
-- RM${item.price}
-
-<button onclick="removeCart(${index})">
-
-Remove
-
+div.innerHTML += `
+<p>
+${p.name}
+(RM ${p.price})
+<button onclick="removeCart(${i})">
+Delete
 </button>
-
-</div>
-
+</p>
 `;
 
 });
 
-document.getElementById("cartItems").innerHTML=html;
-document.getElementById("totalPrice").innerHTML="Total RM"+total;
+}
+
+function removeCart(i){
+
+cart.splice(i,1);
+
+renderCart();
 
 }
 
-function sendWhatsAppOrder(){
+function sendWhatsappOrder(){
 
-let name=document.getElementById("customerName").value;
-let phone=document.getElementById("customerWhatsapp").value;
-let email=document.getElementById("customerEmail").value;
-let address=document.getElementById("customerAddress").value;
+let orderID = generateOrderID();
 
-let orderid=generateOrderID();
+let customer =
+document.getElementById("custName").value;
 
-let order="";
+let phone =
+document.getElementById("custWhatsapp").value;
+
+let email =
+document.getElementById("custEmail").value;
+
+let address =
+document.getElementById("custAddress").value;
+
+let text =
+"SS DYNAMIC MARKETPLACE%0A";
+
+text += "Order ID: "+orderID+"%0A";
+text += "Customer: "+customer+"%0A";
+text += "Phone: "+phone+"%0A";
+text += "Email: "+email+"%0A";
+text += "Address: "+address+"%0A%0A";
 
 cart.forEach(item=>{
-
-order+=item.name+" - RM"+item.price+"%0A";
-
+text += item.name+" - RM"+item.price+"%0A";
 });
 
-let msg=
-
-"SS DYNAMIC MARKETPLACE ORDER%0A%0A"+
-
-"Order ID: "+orderid+"%0A"+
-
-"Name: "+name+"%0A"+
-
-"Phone: "+phone+"%0A"+
-
-"Email: "+email+"%0A"+
-
-"Address: "+address+"%0A%0A"+
-
-"ITEMS:%0A"+order;
-
 window.open(
-
-"https://wa.me/601151453147?text="+msg,
-
+"https://wa.me/601151453147?text="+text,
 "_blank"
-
 );
 
 }
+
+renderProducts();
 
 </script>
 
