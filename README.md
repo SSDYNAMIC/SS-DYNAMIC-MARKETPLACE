@@ -1,5 +1,6 @@
 # SS-DYNAMIC-MARKETPLACE
 SS DYNAMIC FRIENDLY MARKETS PLACE
+<!DOCTYPE html><html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"><title>SS DYNAMIC MARKETPLACE</title><style>
@@ -8,49 +9,264 @@ SS DYNAMIC FRIENDLY MARKETS PLACE
 margin:0;
 padding:0;
 box-sizing:border-box;
-font-family:Arial,Helvetica,sans-serif;
+font-family:Segoe UI,Arial,sans-serif;
+}
+
+:root{
+--primary:#ff0000;
+--secondary:#111111;
+--dark:#000000;
+--light:#ffffff;
+--gray:#1f1f1f;
+--success:#00c853;
 }
 
 body{
-background:#0f0f0f;
-color:#ffffff;
-}
-
-header{
-background:linear-gradient(135deg,#b30000,#000000);
-padding:30px;
-text-align:center;
-border-bottom:3px solid red;
-}
-
-header h1{
-font-size:40px;
+background:#0a0a0a;
 color:white;
 }
 
-header p{
-margin-top:10px;
-color:#cccccc;
+header{
+background:linear-gradient(135deg,#ff0000,#000000);
+padding:20px;
+position:sticky;
+top:0;
+z-index:999;
+box-shadow:0 3px 15px rgba(0,0,0,.5);
+}
+
+.logo{
+font-size:32px;
+font-weight:bold;
+text-align:center;
+}
+
+.subtitle{
+text-align:center;
+margin-top:5px;
+font-size:14px;
+opacity:.9;
+}
+
+.top-bar{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-top:15px;
+flex-wrap:wrap;
+gap:10px;
+}
+
+.search-box{
+flex:1;
+min-width:250px;
+}
+
+.search-box input{
+width:100%;
+padding:12px;
+border:none;
+border-radius:10px;
+}
+
+.cart-btn{
+background:var(--success);
+border:none;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.admin-btn{
+background:var(--primary);
+border:none;
+color:white;
+padding:12px 20px;
+border-radius:10px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.hero{
+height:350px;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+background:
+linear-gradient(rgba(0,0,0,.6),rgba(0,0,0,.6)),
+url('https://images.unsplash.com/photo-1518770660439-4636190af475');
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:48px;
+}
+
+.hero p{
+margin-top:15px;
+font-size:18px;
 }
 
 .container{
 width:95%;
 max-width:1400px;
 margin:auto;
-padding:20px;
+padding:30px 0;
 }
 
-.card{
-background:#1a1a1a;
-border:1px solid #333;
-border-radius:10px;
-padding:20px;
+.section-title{
+font-size:30px;
+margin-bottom:20px;
+border-left:5px solid red;
+padding-left:10px;
+}
+
+.category-filter{
+display:flex;
+flex-wrap:wrap;
+gap:10px;
 margin-bottom:20px;
 }
 
-h2{
-color:red;
-margin-bottom:15px;
+.category-filter button{
+padding:10px 20px;
+border:none;
+border-radius:30px;
+cursor:pointer;
+background:#222;
+color:white;
+}
+
+.category-filter button:hover{
+background:red;
+}
+
+.products-grid{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(280px,1fr));
+gap:20px;
+}
+
+.product-card{
+background:#161616;
+border-radius:15px;
+overflow:hidden;
+transition:.3s;
+border:1px solid #333;
+}
+
+.product-card:hover{
+transform:translateY(-5px);
+}
+
+.product-image{
+height:220px;
+overflow:hidden;
+}
+
+.product-image img{
+width:100%;
+height:100%;
+object-fit:cover;
+}
+
+.product-content{
+padding:15px;
+}
+
+.product-title{
+font-size:20px;
+font-weight:bold;
+margin-bottom:10px;
+}
+
+.product-price{
+font-size:24px;
+font-weight:bold;
+color:#00ff66;
+}
+
+.product-category{
+display:inline-block;
+padding:5px 12px;
+background:red;
+border-radius:20px;
+font-size:12px;
+margin-top:10px;
+}
+
+.product-desc{
+margin-top:10px;
+font-size:14px;
+line-height:1.5;
+}
+
+.product-sku{
+margin-top:10px;
+font-size:12px;
+color:#aaa;
+}
+
+.product-estimate{
+margin-top:10px;
+font-size:13px;
+color:#ffcc00;
+}
+
+.product-buttons{
+display:flex;
+gap:10px;
+margin-top:15px;
+}
+
+.btn{
+flex:1;
+padding:10px;
+border:none;
+border-radius:8px;
+cursor:pointer;
+font-weight:bold;
+}
+
+.btn-cart{
+background:#00c853;
+color:white;
+}
+
+.btn-view{
+background:#ff0000;
+color:white;
+}
+
+.modal{
+display:none;
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(0,0,0,.8);
+z-index:1000;
+overflow:auto;
+}
+
+.modal-content{
+width:95%;
+max-width:700px;
+margin:50px auto;
+background:#111;
+padding:25px;
+border-radius:15px;
+}
+
+.close{
+float:right;
+font-size:28px;
+cursor:pointer;
 }
 
 input,
@@ -58,155 +274,218 @@ select,
 textarea{
 width:100%;
 padding:12px;
-margin-top:8px;
+margin-top:10px;
 margin-bottom:15px;
 border:none;
-border-radius:8px;
-background:#262626;
+border-radius:10px;
+background:#222;
 color:white;
 }
 
 button{
+cursor:pointer;
+}
+
+.form-btn{
 background:red;
 color:white;
+padding:12px;
 border:none;
-padding:12px 20px;
-border-radius:8px;
-cursor:pointer;
+border-radius:10px;
 font-weight:bold;
-}
-
-button:hover{
-background:#cc0000;
-}
-
-.hidden{
-display:none;
-}
-
-.login-box{
-max-width:500px;
-margin:40px auto;
-}
-
-.dashboard{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
-gap:20px;
-}
-
-.stat-box{
-background:#1f1f1f;
-padding:20px;
-border-radius:10px;
-text-align:center;
-border:1px solid #444;
-}
-
-.stat-box h3{
-font-size:32px;
-color:red;
-}
-
-.product-grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
-gap:20px;
-}
-
-.product-card{
-background:#1c1c1c;
-border-radius:10px;
-overflow:hidden;
-border:1px solid #333;
-}
-
-.product-card img{
 width:100%;
-height:220px;
-object-fit:cover;
-}
-
-.product-info{
-padding:15px;
-}
-
-.product-info h3{
-margin-bottom:10px;
-}
-
-.product-price{
-font-size:22px;
-color:red;
-font-weight:bold;
-margin-bottom:10px;
 }
 
 .admin-panel{
-border:2px solid red;
+display:none;
+background:#151515;
+padding:20px;
+border-radius:15px;
+margin-top:20px;
 }
 
-.cart-btn{
-width:100%;
-margin-top:10px;
+.cart-panel{
+display:none;
+position:fixed;
+right:0;
+top:0;
+width:400px;
+max-width:100%;
+height:100%;
+background:#111;
+padding:20px;
+overflow:auto;
+z-index:1200;
+box-shadow:-5px 0 20px rgba(0,0,0,.5);
 }
 
-.whatsapp-btn{
-background:#25D366;
+.cart-header{
+display:flex;
+justify-content:space-between;
+align-items:center;
+margin-bottom:20px;
 }
 
-.whatsapp-btn:hover{
-background:#128C7E;
-}
-
-.logout-btn{
-background:#444;
-margin-left:10px;
-}
-
-.logout-btn:hover{
-background:#666;
-}
-
-table{
-width:100%;
-border-collapse:collapse;
-}
-
-table th,
-table td{
-border:1px solid #444;
+.cart-item{
+background:#1f1f1f;
 padding:10px;
-text-align:left;
+border-radius:10px;
+margin-bottom:10px;
 }
 
-table th{
-background:red;
+.cart-total{
+font-size:22px;
+font-weight:bold;
+margin-top:20px;
+color:#00ff66;
 }
 
 footer{
-background:black;
-padding:20px;
-text-align:center;
+background:#000;
+padding:40px;
 margin-top:50px;
+text-align:center;
+}
+
+footer h3{
+color:red;
+margin-bottom:10px;
+}
+
+.badge{
+background:red;
+padding:3px 8px;
+border-radius:20px;
+font-size:12px;
+margin-left:5px;
 }
 
 @media(max-width:768px){
 
-header h1{
-font-size:28px;
+.hero h1{
+font-size:32px;
 }
 
-.dashboard{
-grid-template-columns:1fr;
+.top-bar{
+flex-direction:column;
+}
+
+.search-box{
+width:100%;
+}
+
+.cart-panel{
+width:100%;
 }
 
 }
 
-</style></head><body><header><h1>SS DYNAMIC MARKETPLACE</h1><p>
-Sale Product Pages Responsibility To Customer
+</style></head><body><header><div class="logo">
+SS DYNAMIC MARKETPLACE
+</div><div class="subtitle">
+Only Marketplace Owners Can Add & Delete Product Listings
+</div><div class="top-bar"><div class="search-box">
+<input
+type="text"
+id="searchInput"
+placeholder="Search Product..."
+>
+</div><button
+class="cart-btn"
+onclick="openCart()">
+
+🛒 CART
+<span id="cartCount" class="badge">0</span>
+
+</button><button
+class="admin-btn"
+onclick="openAdminLogin()">
+
+ADMIN LOGIN
+
+</button></div></header><section class="hero"><div><h1>
+SS DYNAMIC MARKETPLACE
+</h1><p>
+Professional Marketplace System
 </p><p>
-</p></header><div class="container"><!-- LOGIN SECTION --><div id="loginSection" class="card login-box"><h2>Admin Login</h2><input
+Shopping Cart • WhatsApp Checkout • Auto SKU
+</p></div></section><div class="container"><h2 class="section-title">
+PRODUCT CATEGORIES
+</h2><div class="category-filter"><button onclick="filterCategory('all')">
+ALL
+</button><button onclick="filterCategory('electronics')">
+ELECTRONICS
+</button><button onclick="filterCategory('accessories')">
+ACCESSORIES
+</button><button onclick="filterCategory('tools')">
+TOOLS
+</button><button onclick="filterCategory('others')">
+OTHERS
+</button></div><h2 class="section-title">
+PRODUCT LISTINGS
+</h2><div
+id="productContainer"
+class="products-grid"></div><div
+id="adminPanel"
+class="admin-panel"><h2>
+ADMIN PRODUCT MANAGEMENT
+</h2><p>
+(Visible Only After Login)
+</p><hr style="margin:20px 0"><h3>
+ADD NEW PRODUCT
+</h3><form id="productForm"><input
+type="text"
+id="productName"
+placeholder="Product Name">
+
+<input
+type="number"
+id="productPrice"
+placeholder="Price">
+
+<select id="productCategory"><option value="">
+Select Category
+</option><option value="electronics">
+Electronics
+</option><option value="accessories">
+Accessories
+</option><option value="tools">
+Tools
+</option><option value="others">
+Others
+</option></select><input
+type="number"
+id="deliveryDays"
+placeholder="Estimated Delivery Days">
+
+<textarea
+id="productDescription"
+placeholder="Product Description">
+</textarea><input
+type="file"
+id="productImage"
+accept="image/*">
+
+<button
+type="button"
+class="form-btn"
+onclick="addProduct()">
+
+ADD PRODUCT
+
+</button></form><div
+id="adminProductList"
+style="margin-top:30px"></div></div></div><div
+id="adminLoginModal"
+class="modal"><div class="modal-content"><span
+class="close"
+onclick="closeAdminLogin()">
+
+×
+
+</span><h2>
+ADMIN LOGIN
+</h2><input
 type="text"
 id="adminId"
 placeholder="Admin ID">
@@ -216,59 +495,29 @@ type="password"
 id="adminPassword"
 placeholder="Password">
 
-<button onclick="adminLogin()">
+<button
+class="form-btn"
+onclick="adminLogin()">
+
 LOGIN
-</button></div><!-- ADMIN PANEL --><div
-id="adminPanel"
-class="card admin-panel hidden"><h2>Admin Dashboard</h2><button onclick="logoutAdmin()" class="logout-btn">
-Logout
-</button><br><br>
 
-<div class="dashboard"><div class="stat-box">
-<h3 id="totalProducts">0</h3>
-<p>Total Products</p>
-</div><div class="stat-box">
-<h3 id="totalOrders">0</h3>
-<p>Total Orders</p>
-</div><div class="stat-box">
-<h3 id="totalRevenue">RM0</h3>
-<p>Total Revenue</p>
-</div></div><br><h2>Add Product</h2><input
-type="text"
-id="productName"
-placeholder="Product Name">
+</button></div></div><div
+id="cartPanel"
+class="cart-panel"><div class="cart-header"><h2>
+SHOPPING CART
+</h2><button
+class="admin-btn"
+onclick="closeCart()">
 
-<input
-type="text"
-id="productCategory"
-placeholder="Category">
+CLOSE
 
-<input
-type="number"
-id="productPrice"
-placeholder="Price">
+</button></div><div id="cartItems"></div><div
+class="cart-total"
+id="cartTotal">TOTAL: RM0
 
-<input
-type="number"
-id="deliveryDays"
-placeholder="Estimated Delivery Days">
-
-<textarea
-id="productDescription"
-placeholder="Description">
-</textarea><input
-type="file"
-id="productImage"
-accept="image/*">
-
-<button onclick="addProduct()">
-Add Product
-</button></div><!-- PRODUCT LISTING --><div class="card"><h2>Product Listing</h2><div
-id="productContainer"
-class="product-grid"><!-- AUTO GENERATED PRODUCTS --></div></div><!-- SHOPPING CART --><div class="card"><h2>Shopping Cart</h2><div id="cartContainer"><p>No Product Added.</p></div><br><h3>
-Total:
-RM <span id="cartTotal">0</span>
-</h3></div><!-- CUSTOMER ORDER FORM --><div class="card"><h2>Customer Order Form</h2><input
+</div><hr style="margin:20px 0"><h3>
+CUSTOMER ORDER FORM
+</h3><input
 type="text"
 id="customerName"
 placeholder="Name">
@@ -287,719 +536,1004 @@ placeholder="Email">
 id="customerAddress"
 placeholder="Address">
 </textarea><button
-class="whatsapp-btn"
-onclick="checkoutWhatsapp()">
+class="form-btn"
+onclick="checkoutWhatsApp()">
 
-Send Order To WhatsApp
+ORDER VIA WHATSAPP
 
-</button></div><footer><h3>SS DYNAMIC MARKETPLACE</h3><p>
-Powered By SS DYNAMIC
+</button></div><footer><h3>
+SS DYNAMIC MARKETPLACE
+</h3><p>
+Professional Product Listing & Ordering System
+</p><p>
+Version 1.0 Marketplace Foundation
 </p></footer><script>
 
-/* PART 1 VARIABLES */
+/* =====================================================
+PART 2 - JAVASCRIPT CORE ENGINE
+PASTE INSIDE:
+
+<script>
+
+/* PART 2 START HERE */
+
+===================================================== */
+
+// ==========================================
+// CONFIG
+// ==========================================
 
 const ADMIN_ID = "SS DYNAMIC";
 const ADMIN_PASSWORD = "#SSDYNAMIC303677";
 
-let products = [];
-let cart = [];
-let orders = [];
+let products = JSON.parse(localStorage.getItem("ssdynamic_products")) || [];
+let cart = JSON.parse(localStorage.getItem("ssdynamic_cart")) || [];
 
-/* =========================
-LOCAL STORAGE LOADING
-========================= */
+let currentFilter = "all";
 
-if(localStorage.getItem("ss_products")){
-products = JSON.parse(localStorage.getItem("ss_products"));
+// ==========================================
+// INIT
+// ==========================================
+
+window.onload = function(){
+
+loadProducts();
+renderProducts();
+updateCartCount();
+
+};
+
+// ==========================================
+// ADMIN LOGIN
+// ==========================================
+
+function openAdminLogin(){
+document.getElementById("adminLoginModal").style.display="block";
 }
 
-if(localStorage.getItem("ss_cart")){
-cart = JSON.parse(localStorage.getItem("ss_cart"));
+function closeAdminLogin(){
+document.getElementById("adminLoginModal").style.display="none";
 }
-
-if(localStorage.getItem("ss_orders")){
-orders = JSON.parse(localStorage.getItem("ss_orders"));
-}
-
-if(sessionStorage.getItem("ss_admin_login") === "true"){
-document.getElementById("loginSection").classList.add("hidden");
-document.getElementById("adminPanel").classList.remove("hidden");
-}
-
-/* =========================
-SAVE FUNCTIONS
-========================= */
-
-function saveProducts(){
-localStorage.setItem(
-"ss_products",
-JSON.stringify(products)
-);
-}
-
-function saveCart(){
-localStorage.setItem(
-"ss_cart",
-JSON.stringify(cart)
-);
-}
-
-function saveOrders(){
-localStorage.setItem(
-"ss_orders",
-JSON.stringify(orders)
-);
-}
-
-/* =========================
-ADMIN LOGIN
-========================= */
 
 function adminLogin(){
 
-const id =
-document.getElementById("adminId").value.trim();
+let id =
+document.getElementById("adminId").value;
 
-const password =
+let password =
 document.getElementById("adminPassword").value;
 
 if(
-    id === ADMIN_ID &&
-    password === ADMIN_PASSWORD
+id === ADMIN_ID &&
+password === ADMIN_PASSWORD
 ){
 
-    sessionStorage.setItem(
-        "ss_admin_login",
-        "true"
-    );
+alert("Admin Login Success");
 
-    document
-    .getElementById("loginSection")
-    .classList.add("hidden");
+document.getElementById(
+"adminPanel"
+).style.display="block";
 
-    document
-    .getElementById("adminPanel")
-    .classList.remove("hidden");
+closeAdminLogin();
 
-    alert("Admin Login Successful");
+renderAdminProducts();
 
-}else{
+}
+else{
 
-    alert("Invalid Admin Login");
+alert("Invalid Admin ID or Password");
 
 }
 
 }
 
-/* =========================
-LOGOUT
-========================= */
+function adminLogout(){
 
-function logoutAdmin(){
+document.getElementById(
+"adminPanel"
+).style.display="none";
 
-sessionStorage.removeItem(
-    "ss_admin_login"
+alert("Logged Out");
+
+}
+
+// ==========================================
+// PRODUCT STORAGE
+// ==========================================
+
+function saveProducts(){
+
+localStorage.setItem(
+"ssdynamic_products",
+JSON.stringify(products)
 );
 
-location.reload();
+}
+
+function loadProducts(){
+
+products =
+JSON.parse(
+localStorage.getItem(
+"ssdynamic_products"
+)
+) || [];
 
 }
 
-/* =========================
-SKU GENERATOR
-========================= */
+// ==========================================
+// SKU GENERATOR
+// ==========================================
 
 function generateSKU(){
 
-let nextNumber =
-products.length + 1001;
+let random =
+Math.floor(
+100000 + Math.random() * 900000
+);
 
-return "SSD-" + nextNumber;
-
-}
-
-/* =========================
-ORDER ID GENERATOR
-========================= */
-
-function generateOrderID(){
-
-let nextOrder =
-orders.length + 1;
-
-return "ORD-" +
-String(nextOrder)
-.padStart(6,"0");
+return "SSD-" + random;
 
 }
 
-/* =========================
-ADD PRODUCT
-========================= */
+// ==========================================
+// PRODUCT ID
+// ==========================================
+
+function generateProductId(){
+
+return Date.now();
+
+}
+
+// ==========================================
+// IMAGE TO BASE64
+// ==========================================
+
+function convertImageToBase64(
+file,
+callback
+){
+
+const reader = new FileReader();
+
+reader.onload = function(e){
+
+callback(e.target.result);
+
+};
+
+reader.readAsDataURL(file);
+
+}
+
+// ==========================================
+// ADD PRODUCT
+// ==========================================
 
 function addProduct(){
 
 const name =
-document.getElementById("productName").value;
-
-const category =
-document.getElementById("productCategory").value;
+document.getElementById(
+"productName"
+).value;
 
 const price =
-document.getElementById("productPrice").value;
+document.getElementById(
+"productPrice"
+).value;
 
-const days =
-document.getElementById("deliveryDays").value;
+const category =
+document.getElementById(
+"productCategory"
+).value;
+
+const delivery =
+document.getElementById(
+"deliveryDays"
+).value;
 
 const description =
-document.getElementById("productDescription").value;
+document.getElementById(
+"productDescription"
+).value;
 
 const imageFile =
-document.getElementById("productImage").files[0];
+document.getElementById(
+"productImage"
+).files[0];
 
 if(
-    !name ||
-    !category ||
-    !price
+!name ||
+!price ||
+!category
 ){
-    alert(
-        "Please Complete Product Information"
-    );
-    return;
-}
 
-const sku =
-generateSKU();
+alert(
+"Please complete all required fields"
+);
+
+return;
+
+}
 
 if(imageFile){
 
-    const reader =
-    new FileReader();
+convertImageToBase64(
+imageFile,
+function(base64Image){
 
-    reader.onload =
-    function(e){
+let product = {
 
-        const product = {
+id: generateProductId(),
 
-            sku: sku,
+sku: generateSKU(),
 
-            name: name,
+name: name,
 
-            category: category,
+price: parseFloat(price),
 
-            price: price,
+category: category,
 
-            deliveryDays: days,
+delivery: delivery,
 
-            description: description,
+description: description,
 
-            image:
-            e.target.result
+image: base64Image
 
-        };
+};
 
-        products.push(product);
-
-        saveProducts();
-
-        renderProducts();
-
-        updateDashboard();
-
-        clearProductForm();
-
-    };
-
-    reader.readAsDataURL(imageFile);
-
-}else{
-
-    const product = {
-
-        sku: sku,
-
-        name: name,
-
-        category: category,
-
-        price: price,
-
-        deliveryDays: days,
-
-        description: description,
-
-        image:
-        "https://via.placeholder.com/600x400?text=SS+DYNAMIC"
-
-    };
-
-    products.push(product);
-
-    saveProducts();
-
-    renderProducts();
-
-    updateDashboard();
-
-    clearProductForm();
-
-}
-
-}
-
-/* =========================
-CLEAR PRODUCT FORM
-========================= */
-
-function clearProductForm(){
-
-document.getElementById("productName").value="";
-document.getElementById("productCategory").value="";
-document.getElementById("productPrice").value="";
-document.getElementById("deliveryDays").value="";
-document.getElementById("productDescription").value="";
-document.getElementById("productImage").value="";
-
-}
-
-/* =========================
-DELETE PRODUCT
-========================= */
-
-function deleteProduct(index){
-
-if(
-    !confirm(
-        "Delete Product?"
-    )
-){
-    return;
-}
-
-products.splice(index,1);
+products.push(product);
 
 saveProducts();
 
 renderProducts();
 
-updateDashboard();
+renderAdminProducts();
+
+document.getElementById(
+"productForm"
+).reset();
+
+alert(
+"Product Added Successfully"
+);
+
+}
+);
+
+}
+else{
+
+let product = {
+
+id: generateProductId(),
+
+sku: generateSKU(),
+
+name: name,
+
+price: parseFloat(price),
+
+category: category,
+
+delivery: delivery,
+
+description: description,
+
+image:
+"https://via.placeholder.com/400x300?text=SS+DYNAMIC"
+
+};
+
+products.push(product);
+
+saveProducts();
+
+renderProducts();
+
+renderAdminProducts();
+
+document.getElementById(
+"productForm"
+).reset();
+
+alert(
+"Product Added Successfully"
+);
 
 }
 
-/* =========================
-PRODUCT LISTING
-========================= */
+}
 
-function renderProducts(){
+// ==========================================
+// DELETE PRODUCT
+// ==========================================
+
+function deleteProduct(id){
+
+let confirmDelete =
+confirm(
+"Delete this product?"
+);
+
+if(!confirmDelete) return;
+
+products =
+products.filter(
+product =>
+product.id !== id
+);
+
+saveProducts();
+
+renderProducts();
+
+renderAdminProducts();
+
+}
+
+// ==========================================
+// ADMIN PRODUCT LIST
+// ==========================================
+
+function renderAdminProducts(){
 
 const container =
 document.getElementById(
-    "productContainer"
+"adminProductList"
 );
 
-container.innerHTML = "";
-
-products.forEach(
-(product,index)=>{
-
-    const isAdmin =
-    sessionStorage.getItem(
-        "ss_admin_login"
-    ) === "true";
-
-    let adminButtons = "";
-
-    if(isAdmin){
-
-        adminButtons =
-        `
-        <button
-        onclick="deleteProduct(${index})">
-        Delete Product
-        </button>
-        `;
-
-    }
-
-    container.innerHTML +=
-
-    `
-    <div class="product-card">
-
-        <img
-        src="${product.image}">
-
-        <div class="product-info">
-
-            <h3>
-            ${product.name}
-            </h3>
-
-            <p>
-            SKU:
-            ${product.sku}
-            </p>
-
-            <p>
-            Category:
-            ${product.category}
-            </p>
-
-            <div
-            class="product-price">
-
-            RM ${product.price}
-
-            </div>
-
-            <p>
-            ${product.description}
-            </p>
-
-            <p>
-            ETA:
-            ${product.deliveryDays}
-            Day(s)
-            </p>
-
-            <button
-            class="cart-btn"
-            onclick="addToCart(${index})">
-
-            Add To Cart
-
-            </button>
-
-            ${adminButtons}
-
-        </div>
-
-    </div>
-    `;
-
-});
-
-}
-
-/* =========================
-DASHBOARD
-========================= */
-
-function updateDashboard(){
-
-document.getElementById(
-    "totalProducts"
-).innerText =
-products.length;
-
-document.getElementById(
-    "totalOrders"
-).innerText =
-orders.length;
-
-}/* =========================
-ADD TO CART
-========================= */
-
-function addToCart(index){
-
-const product = products[index];
-
-const existingItem =
-cart.find(
-    item =>
-    item.sku === product.sku
-);
-
-if(existingItem){
-
-    existingItem.qty++;
-
-}else{
-
-    cart.push({
-
-        sku: product.sku,
-
-        name: product.name,
-
-        price: Number(product.price),
-
-        qty: 1
-
-    });
-
-}
-
-saveCart();
-
-renderCart();
-
-}
-
-/* =========================
-REMOVE CART ITEM
-========================= */
-
-function removeCartItem(index){
-
-cart.splice(index,1);
-
-saveCart();
-
-renderCart();
-
-}
-
-/* =========================
-UPDATE CART
-========================= */
-
-function renderCart(){
-
-const container =
-document.getElementById(
-    "cartContainer"
-);
-
-if(cart.length === 0){
-
-    container.innerHTML =
-    "<p>No Product Added.</p>";
-
-    document.getElementById(
-        "cartTotal"
-    ).innerText = "0";
-
-    return;
-
-}
+if(!container) return;
 
 let html = "";
 
-let total = 0;
+products.forEach(product=>{
 
-cart.forEach(
-(item,index)=>{
+html += `
 
-    const subtotal =
-    item.price * item.qty;
+<div
+style="
+background:#222;
+padding:15px;
+border-radius:10px;
+margin-bottom:10px;
+">
 
-    total += subtotal;
+<b>${product.name}</b>
 
-    html +=
+<br>
 
-    `
-    <div class="card">
+SKU:
+${product.sku}
 
-        <h3>
-        ${item.name}
-        </h3>
+<br>
 
-        <p>
-        SKU:
-        ${item.sku}
-        </p>
+RM
+${product.price}
 
-        <p>
-        Quantity:
-        ${item.qty}
-        </p>
+<br><br>
 
-        <p>
-        RM ${item.price}
-        </p>
+<button
+onclick="deleteProduct(${product.id})"
+style="
+background:red;
+border:none;
+padding:8px 15px;
+color:white;
+border-radius:5px;
+cursor:pointer;
+">
 
-        <p>
-        Subtotal:
-        RM ${subtotal}
-        </p>
+DELETE
 
-        <button
-        onclick="removeCartItem(${index})">
+</button>
 
-        Remove
+</div>
 
-        </button>
-
-    </div>
-    `;
+`;
 
 });
 
 container.innerHTML = html;
 
-document.getElementById(
-    "cartTotal"
-).innerText = total;
+}
+
+// ==========================================
+// FILTER PRODUCTS
+// ==========================================
+
+function filterCategory(category){
+
+currentFilter = category;
+
+renderProducts();
 
 }
 
-/* =========================
-CALCULATE CART TOTAL
-========================= */
+// ==========================================
+// SEARCH PRODUCTS
+// ==========================================
 
-function calculateCartTotal(){
+document.addEventListener(
+"input",
+function(e){
+
+if(
+e.target.id === "searchInput"
+){
+
+renderProducts();
+
+}
+
+}
+);
+
+// ==========================================
+// PRODUCT GRID
+// ==========================================
+
+function renderProducts(){
+
+const container =
+document.getElementById(
+"productContainer"
+);
+
+if(!container) return;
+
+let searchText =
+document.getElementById(
+"searchInput"
+).value
+.toLowerCase();
+
+let filteredProducts =
+products.filter(product=>{
+
+let categoryMatch =
+currentFilter==="all"
+||
+product.category===currentFilter;
+
+let searchMatch =
+product.name
+.toLowerCase()
+.includes(searchText);
+
+return (
+categoryMatch &&
+searchMatch
+);
+
+});
+
+let html = "";
+
+filteredProducts.forEach(product=>{
+
+html += `
+
+<div class="product-card">
+
+<div class="product-image">
+
+<img
+src="${product.image}"
+alt="${product.name}">
+
+</div>
+
+<div class="product-content">
+
+<div class="product-title">
+${product.name}
+</div>
+
+<div class="product-price">
+RM ${product.price}
+</div>
+
+<div class="product-category">
+${product.category}
+</div>
+
+<div class="product-desc">
+${product.description}
+</div>
+
+<div class="product-sku">
+SKU:
+${product.sku}
+</div>
+
+<div class="product-estimate">
+Estimated:
+${product.delivery} Day(s)
+</div>
+
+<div class="product-buttons">
+
+<button
+class="btn btn-cart"
+onclick="addToCart(${product.id})">
+
+ADD TO CART
+
+</button>
+
+</div>
+
+</div>
+
+</div>
+
+`;
+
+});
+
+if(filteredProducts.length===0){
+
+html = `
+<div style="padding:30px;">
+No Products Found
+</div>
+`;
+
+}
+
+container.innerHTML = html;
+
+}
+
+/* =====================================================
+PART 3 - SHOPPING CART, ORDER SYSTEM,
+WHATSAPP CHECKOUT & FINAL INTEGRATION
+
+PASTE BELOW PART 2
+INSIDE THE SAME <script> TAG
+
+===================================================== */
+
+// ==========================================
+// CART STORAGE
+// ==========================================
+
+function saveCart(){
+
+localStorage.setItem(
+"ssdynamic_cart",
+JSON.stringify(cart)
+);
+
+}
+
+// ==========================================
+// CART PANEL
+// ==========================================
+
+function openCart(){
+
+document.getElementById(
+"cartPanel"
+).style.display="block";
+
+renderCart();
+
+}
+
+function closeCart(){
+
+document.getElementById(
+"cartPanel"
+).style.display="none";
+
+}
+
+// ==========================================
+// ADD TO CART
+// ==========================================
+
+function addToCart(productId){
+
+const product =
+products.find(
+p => p.id === productId
+);
+
+if(!product) return;
+
+const existing =
+cart.find(
+item => item.id === productId
+);
+
+if(existing){
+
+existing.qty++;
+
+}else{
+
+cart.push({
+
+id: product.id,
+sku: product.sku,
+name: product.name,
+price: product.price,
+image: product.image,
+qty: 1
+
+});
+
+}
+
+saveCart();
+
+renderCart();
+
+updateCartCount();
+
+alert(
+product.name +
+" added to cart"
+);
+
+}
+
+// ==========================================
+// REMOVE CART ITEM
+// ==========================================
+
+function removeCartItem(productId){
+
+cart =
+cart.filter(
+item => item.id !== productId
+);
+
+saveCart();
+
+renderCart();
+
+updateCartCount();
+
+}
+
+// ==========================================
+// INCREASE QTY
+// ==========================================
+
+function increaseQty(productId){
+
+const item =
+cart.find(
+i => i.id === productId
+);
+
+if(item){
+
+item.qty++;
+
+saveCart();
+
+renderCart();
+
+updateCartCount();
+
+}
+
+}
+
+// ==========================================
+// DECREASE QTY
+// ==========================================
+
+function decreaseQty(productId){
+
+const item =
+cart.find(
+i => i.id === productId
+);
+
+if(!item) return;
+
+item.qty--;
+
+if(item.qty <= 0){
+
+removeCartItem(productId);
+
+return;
+
+}
+
+saveCart();
+
+renderCart();
+
+updateCartCount();
+
+}
+
+// ==========================================
+// CART COUNTER
+// ==========================================
+
+function updateCartCount(){
+
+const totalItems =
+cart.reduce(
+(sum,item)=>
+sum + item.qty,
+0
+);
+
+const counter =
+document.getElementById(
+"cartCount"
+);
+
+if(counter){
+
+counter.innerText =
+totalItems;
+
+}
+
+}
+
+// ==========================================
+// RENDER CART
+// ==========================================
+
+function renderCart(){
+
+const cartItems =
+document.getElementById(
+"cartItems"
+);
+
+const cartTotal =
+document.getElementById(
+"cartTotal"
+);
+
+if(!cartItems) return;
+
+let html = "";
 
 let total = 0;
 
 cart.forEach(item=>{
 
-    total +=
-    item.price * item.qty;
+let subtotal =
+item.price * item.qty;
+
+total += subtotal;
+
+html += `
+
+<div class="cart-item"><b>
+${item.name}
+</b><br>SKU:
+${item.sku}
+
+<br>RM ${item.price}
+
+<br><br>
+
+<div style="
+display:flex;
+gap:10px;
+align-items:center;
+"><button
+onclick="decreaseQty(${item.id})">
+
+- 
+
+</button><span>${item.qty}
+
+</span><button
+onclick="increaseQty(${item.id})">
+
++ 
+
+</button></div><br>Subtotal:
+RM ${subtotal.toFixed(2)}
+
+<br><br>
+
+<button
+onclick="removeCartItem(${item.id})"
+style="
+background:red;
+color:white;
+border:none;
+padding:8px;
+border-radius:5px;
+">
+
+REMOVE
+
+</button></div>`;
 
 });
 
-return total;
+if(cart.length===0){
+
+html = `
+
+<p>
+Your cart is empty
+</p>
+`;}
+
+cartItems.innerHTML = html;
+
+cartTotal.innerHTML =
+"TOTAL: RM " +
+total.toFixed(2);
 
 }
 
-/* =========================
-CHECKOUT WHATSAPP
-========================= */
+// ==========================================
+// ORDER ID GENERATOR
+// ==========================================
 
-function checkoutWhatsapp(){
+function generateOrderId(){
 
-if(cart.length === 0){
+let now =
+new Date();
 
-    alert(
-        "Shopping Cart Empty"
-    );
+let random =
+Math.floor(
+1000 + Math.random()*9000
+);
 
-    return;
+return "SSD-ORDER-" +
+now.getFullYear() +
+(now.getMonth()+1) +
+now.getDate() +
+"-" +
+random;
 
 }
 
-const name =
+// ==========================================
+// WHATSAPP CHECKOUT
+// ==========================================
+
+function checkoutWhatsApp(){
+
+if(cart.length===0){
+
+alert(
+"Cart is empty"
+);
+
+return;
+
+}
+
+let name =
 document.getElementById(
-    "customerName"
+"customerName"
 ).value;
 
-const whatsapp =
+let whatsapp =
 document.getElementById(
-    "customerWhatsapp"
+"customerWhatsapp"
 ).value;
 
-const email =
+let email =
 document.getElementById(
-    "customerEmail"
+"customerEmail"
 ).value;
 
-const address =
+let address =
 document.getElementById(
-    "customerAddress"
+"customerAddress"
 ).value;
 
 if(
-    !name ||
-    !whatsapp ||
-    !address
+!name ||
+!whatsapp
 ){
 
-    alert(
-        "Please Complete Customer Information"
-    );
+alert(
+"Please enter customer information"
+);
 
-    return;
+return;
 
 }
 
-const orderID =
-generateOrderID();
+let orderId =
+generateOrderId();
 
-let total =
-calculateCartTotal();
+let total = 0;
 
-let productList = "";
+let message =
+
+"SS DYNAMIC MARKETPLACE ORDER%0A%0A" +
+
+"Order ID: " +
+orderId +
+"%0A" +
+
+"Customer Name: " +
+name +
+"%0A" +
+
+"WhatsApp: " +
+whatsapp +
+"%0A" +
+
+"Email: " +
+email +
+"%0A" +
+
+"Address: " +
+address +
+"%0A%0A" +
+
+"====================%0A" +
+
+"ORDER ITEMS%0A" +
+
+"====================%0A";
 
 cart.forEach(item=>{
 
-    productList +=
+let subtotal =
+item.price *
+item.qty;
 
-    "• " +
-    item.name +
-    " | Qty: " +
-    item.qty +
-    " | RM " +
-    (
-        item.price *
-        item.qty
-    ) +
-    "\n";
+total += subtotal;
+
+message +=
+
+item.name +
+"%0A" +
+
+"SKU: " +
+item.sku +
+"%0A" +
+
+"Qty: " +
+item.qty +
+"%0A" +
+
+"Price: RM " +
+item.price +
+"%0A" +
+
+"Subtotal: RM " +
+subtotal.toFixed(2) +
+"%0A%0A";
 
 });
 
-const order = {
+message +=
 
-    orderID:
-    orderID,
+"====================%0A" +
 
-    customer:
-    name,
+"TOTAL: RM " +
+total.toFixed(2) +
+"%0A" +
 
-    whatsapp:
-    whatsapp,
+"====================%0A%0A" +
 
-    email:
-    email,
-
-    address:
-    address,
-
-    total:
-    total,
-
-    date:
-    new Date()
-    .toLocaleString()
-
-};
-
-orders.push(order);
-
-saveOrders();
-
-const message =
-
-`SS DYNAMIC MARKETPLACE
-
-ORDER ID:
-${orderID}
-
-CUSTOMER:
-${name}
-
-WHATSAPP:
-${whatsapp}
-
-EMAIL:
-${email}
-
-ADDRESS:
-${address}
-
----
-
-PRODUCTS
-
-${productList}
-
----
-
-TOTAL:
-RM ${total}
-
-Thank You`;
-
-const encodedMessage =
-encodeURIComponent(
-    message
-);
+"Thank You.";
 
 window.open(
+
 "https://wa.me/601151453147?text=" +
-encodedMessage,
+message,
+
 "_blank"
+
 );
 
 cart = [];
@@ -1008,90 +1542,84 @@ saveCart();
 
 renderCart();
 
-updateDashboard();
+updateCartCount();
 
-updateRevenue();
+}
 
-alert(
-    "Order Created Successfully"
+// ==========================================
+// AUTO CLOSE MODAL
+// ==========================================
+
+window.onclick = function(event){
+
+const modal =
+document.getElementById(
+"adminLoginModal"
 );
 
-}
+if(event.target === modal){
 
-/* =========================
-REVENUE
-========================= */
-
-function updateRevenue(){
-
-let revenue = 0;
-
-orders.forEach(order=>{
-
-    revenue +=
-    Number(order.total);
-
-});
-
-document.getElementById(
-    "totalRevenue"
-).innerText =
-"RM " + revenue;
+modal.style.display="none";
 
 }
 
-/* =========================
-LOAD ALL DATA
-========================= */
+};
 
-function initializeSystem(){
+// ==========================================
+// DEMO PRODUCTS
+// FIRST RUN ONLY
+// ==========================================
+
+if(
+localStorage.getItem(
+"ssdynamic_products"
+) === null
+){
+
+products = [
+
+{
+id:1,
+sku:"SSD-100001",
+name:"Sample Product 1",
+price:99,
+category:"electronics",
+delivery:3,
+description:"SS Dynamic Demo Product",
+image:"https://via.placeholder.com/400x300?text=SS+DYNAMIC"
+},
+
+{
+id:2,
+sku:"SSD-100002",
+name:"Sample Product 2",
+price:199,
+category:"accessories",
+delivery:5,
+description:"SS Dynamic Demo Product",
+image:"https://via.placeholder.com/400x300?text=SS+DYNAMIC"
+}
+
+];
+
+saveProducts();
+
+}
+
+// ==========================================
+// FINAL INITIALIZATION
+// ==========================================
+
+loadProducts();
 
 renderProducts();
 
 renderCart();
 
-updateDashboard();
+updateCartCount();
 
-updateRevenue();
-
-}
-
-initializeSystem();
-
-/* =========================
-ENTER KEY LOGIN
-========================= */
-
-document
-.getElementById(
-"adminPassword"
-)
-.addEventListener(
-"keypress",
-function(e){
-
-if(e.key==="Enter"){
-
-adminLogin();
-
-}
-
-}
+console.log(
+"SS DYNAMIC MARKETPLACE READY"
 );
 
-/* =========================
-AUTO REFRESH DASHBOARD
-========================= */
-
-setInterval(()=>{
-
-updateDashboard();
-
-updateRevenue();
-
-},3000);
-
-/* =========================
-END SYSTEM
-========================= */
-</script>
+/*</script></body>
