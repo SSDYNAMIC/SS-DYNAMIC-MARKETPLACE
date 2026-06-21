@@ -206,7 +206,6 @@ grid-template-columns:1fr;
 </style></head><body><header><h1>SS DYNAMIC MARKETPLACE</h1><p>
 Sale Product Pages Responsibility To Customer
 </p><p>
-Only SS Dynamic Marketplace Owners Can Add & Delete Product Listings
 </p></header><div class="container"><!-- LOGIN SECTION --><div id="loginSection" class="card login-box"><h2>Admin Login</h2><input
 type="text"
 id="adminId"
