@@ -2,8 +2,7 @@
 SS DYNAMIC FRIENDLY MARKETS PLACE
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>SS DYNAMIC MARKETPLACE</title>
 
 <style>
@@ -12,53 +11,46 @@ body{
 font-family:Arial,sans-serif;
 margin:0;
 background:#111;
-color:white;
+color:#fff;
 }
 
 header{
 background:#c00000;
 padding:20px;
 text-align:center;
-font-size:30px;
-font-weight:bold;
 }
 
 .container{
-padding:20px;
-max-width:1200px;
+width:95%;
+max-width:1400px;
 margin:auto;
+padding:20px;
 }
 
 .card{
-background:#1b1b1b;
+background:#1a1a1a;
 padding:15px;
-margin-bottom:20px;
 border-radius:10px;
+margin-bottom:15px;
 }
 
 input,textarea,select{
 width:100%;
 padding:10px;
-margin-top:5px;
-margin-bottom:10px;
-border:none;
+margin:5px 0;
 border-radius:5px;
+border:none;
 }
 
 button{
 padding:10px 15px;
-background:red;
-color:white;
+background:#c00000;
+color:#fff;
 border:none;
 cursor:pointer;
-border-radius:5px;
 }
 
-button:hover{
-background:#ff3333;
-}
-
-.grid{
+.gallery{
 display:grid;
 grid-template-columns:repeat(auto-fit,minmax(250px,1fr));
 gap:15px;
@@ -72,24 +64,9 @@ border-radius:10px;
 
 .product img{
 width:100%;
-height:220px;
+height:250px;
 object-fit:cover;
 border-radius:10px;
-}
-
-.hidden{
-display:none;
-}
-
-.cart-item{
-padding:10px;
-border-bottom:1px solid #333;
-}
-
-.badge{
-background:red;
-padding:5px 10px;
-border-radius:20px;
 }
 
 </style>
@@ -98,38 +75,40 @@ border-radius:20px;
 <body>
 
 <header>
-SS DYNAMIC MARKETPLACE
+<h1>SS DYNAMIC MARKETPLACE</h1>
+<p>Buy Products Easily</p>
 </header>
 
 <div class="container">
 
+<!-- ADMIN LOGIN -->
 <div class="card">
-
 <h2>Admin Login</h2>
 
-<input id="adminid" placeholder="Admin ID">
+<input type="text" id="adminID" placeholder="Admin ID">
 
-<input id="adminpass" type="password" placeholder="Password">
+<input type="password" id="adminPassword" placeholder="Password">
 
 <button onclick="loginAdmin()">Login</button>
-
 </div>
 
-<div id="adminPanel" class="card hidden">
+<!-- PRODUCT MANAGEMENT -->
+<div class="card" id="adminPanel" style="display:none">
 
-<h2>Add Product</h2>
+<h2>Product Management</h2>
 
-<input id="pname" placeholder="Product Name">
+<input type="file" id="productImage" multiple accept="image/*">
 
-<input id="price" placeholder="Price">
+<input type="text" id="productName" placeholder="Product Name">
 
-<input id="category" placeholder="Category">
+<input type="number" id="productPrice" placeholder="Price">
 
-<input id="days" placeholder="Estimate Delivery Days">
+<input type="text" id="productCategory" placeholder="Category">
 
-<textarea id="description" placeholder="Description"></textarea>
+<input type="number" id="deliveryDay" placeholder="Estimate Delivery Days">
 
-<input type="file" id="image">
+<textarea id="productDescription"
+placeholder="Description"></textarea>
 
 <button onclick="addProduct()">
 Add Product
@@ -137,44 +116,40 @@ Add Product
 
 </div>
 
+<!-- PRODUCT GALLERY -->
+<h2>Product Gallery</h2>
+
+<div id="gallery" class="gallery"></div>
+
+<!-- SHOPPING CART -->
 <div class="card">
 
-<h2>
-Products
-</h2>
+<h2>Shopping Cart</h2>
 
-<div id="gallery" class="grid"></div>
+<div id="cartItems"></div>
 
-</div>
-
-<div class="card">
-
-<h2>
-Shopping Cart
-<span id="cartcount" class="badge">0</span>
-</h2>
-
-<div id="cart"></div>
-
-<h3 id="total">
+<h3 id="cartTotal">
 Total: RM0
 </h3>
 
 </div>
 
+<!-- ORDER FORM -->
 <div class="card">
 
-<h2>
-Order Form
-</h2>
+<h2>Order Form</h2>
 
-<input id="custname" placeholder="Name">
+<input type="text" id="customerName"
+placeholder="Name">
 
-<input id="custwa" placeholder="WhatsApp Number">
+<input type="text" id="customerWhatsapp"
+placeholder="WhatsApp Number">
 
-<input id="custemail" placeholder="Email">
+<input type="email" id="customerEmail"
+placeholder="Email">
 
-<textarea id="custaddress" placeholder="Address"></textarea>
+<textarea id="customerAddress"
+placeholder="Address"></textarea>
 
 <button onclick="checkoutWhatsapp()">
 Order Via WhatsApp
@@ -186,51 +161,85 @@ Order Via WhatsApp
 
 <script>
 
-let products=
-JSON.parse(localStorage.getItem("products"))||[];
+let products =
+JSON.parse(localStorage.getItem("products")) || [];
 
 let cart=[];
 
 function loginAdmin(){
 
-let id=
-document.getElementById("adminid").value;
+let id =
+document.getElementById("adminID").value;
 
-let pass=
-document.getElementById("adminpass").value;
+let pass =
+document.getElementById("adminPassword").value;
 
-if(id==="SS DYNAMIC" && pass==="303677"){
-document.getElementById("adminPanel").classList.remove("hidden");
+if(
+id==="SS DYNAMIC" &&
+pass==="#SSDYNAMIC303677"
+){
+
+document.getElementById("adminPanel")
+.style.display="block";
+
 alert("Admin Login Success");
+
 }else{
+
 alert("Invalid Login");
+
 }
 
 }
 
 function generateSKU(){
-return "SKU"+Date.now();
+
+return "SKU-" +
+Date.now();
+
+}
+
+function generateOrderID(){
+
+return "ORD-" +
+Date.now();
+
 }
 
 function addProduct(){
 
-let file=
-document.getElementById("image").files[0];
+let file =
+document.getElementById("productImage").files[0];
 
-let reader=
-new FileReader();
+if(!file) return;
 
-reader.onload=function(){
+let reader=new FileReader();
+
+reader.onload=function(e){
 
 let product={
+
 id:Date.now(),
+
 sku:generateSKU(),
-name:document.getElementById("pname").value,
-price:document.getElementById("price").value,
-category:document.getElementById("category").value,
-days:document.getElementById("days").value,
-description:document.getElementById("description").value,
-image:reader.result
+
+image:e.target.result,
+
+name:
+document.getElementById("productName").value,
+
+price:
+document.getElementById("productPrice").value,
+
+category:
+document.getElementById("productCategory").value,
+
+delivery:
+document.getElementById("deliveryDay").value,
+
+description:
+document.getElementById("productDescription").value
+
 };
 
 products.push(product);
@@ -244,9 +253,7 @@ renderProducts();
 
 };
 
-if(file){
 reader.readAsDataURL(file);
-}
 
 }
 
@@ -254,7 +261,7 @@ function renderProducts(){
 
 let html="";
 
-products.forEach(p=>{
+products.forEach((p,index)=>{
 
 html+=`
 
@@ -264,22 +271,22 @@ html+=`
 
 <h3>${p.name}</h3>
 
-<p>SKU: ${p.sku}</p>
+<p>SKU : ${p.sku}</p>
 
 <p>RM ${p.price}</p>
 
 <p>${p.category}</p>
 
+<p>${p.delivery} Days</p>
+
 <p>${p.description}</p>
 
-<p>Estimate ${p.days} Days</p>
-
-<button onclick="addCart(${p.id})">
+<button onclick="addCart(${index})">
 Add Cart
 </button>
 
-<button onclick="deleteProduct(${p.id})">
-Delete
+<button onclick="deleteProduct(${index})">
+Delete Product
 </button>
 
 </div>
@@ -288,14 +295,14 @@ Delete
 
 });
 
-document.getElementById("gallery").innerHTML=html;
+document.getElementById("gallery")
+.innerHTML=html;
 
 }
 
-function deleteProduct(id){
+function deleteProduct(index){
 
-products=
-products.filter(p=>p.id!==id);
+products.splice(index,1);
 
 localStorage.setItem(
 "products",
@@ -306,12 +313,9 @@ renderProducts();
 
 }
 
-function addCart(id){
+function addCart(index){
 
-let item=
-products.find(p=>p.id===id);
-
-cart.push(item);
+cart.push(products[index]);
 
 renderCart();
 
@@ -319,37 +323,35 @@ renderCart();
 
 function renderCart(){
 
-let html="";
 let total=0;
+let html="";
 
-cart.forEach((c,index)=>{
+cart.forEach((c,i)=>{
 
 total+=Number(c.price);
 
 html+=`
 
-<div class="cart-item">
-
+<p>
 ${c.name}
-RM ${c.price}
+- RM${c.price}
 
-<button onclick="removeCart(${index})">
-X
+<button onclick="removeCart(${i})">
+Delete
 </button>
 
-</div>
+</p>
 
 `;
 
 });
 
-document.getElementById("cart").innerHTML=html;
+document.getElementById("cartItems")
+.innerHTML=html;
 
-document.getElementById("total").innerHTML=
-"Total: RM"+total;
-
-document.getElementById("cartcount").innerHTML=
-cart.length;
+document.getElementById("cartTotal")
+.innerHTML=
+"Total : RM"+total;
 
 }
 
@@ -361,43 +363,43 @@ renderCart();
 
 }
 
-function generateOrderID(){
-
-return "ORD"+Date.now();
-
-}
-
 function checkoutWhatsapp(){
 
-let orderid=
+let orderID=
 generateOrderID();
 
 let name=
-document.getElementById("custname").value;
+document.getElementById("customerName").value;
 
-let wa=
-document.getElementById("custwa").value;
-
-let email=
-document.getElementById("custemail").value;
+let phone=
+document.getElementById("customerWhatsapp").value;
 
 let address=
-document.getElementById("custaddress").value;
+document.getElementById("customerAddress").value;
 
-let msg=
+let email=
+document.getElementById("customerEmail").value;
+
+let message=
 "SS DYNAMIC MARKETPLACE%0A"+
-"Order ID: "+orderid+"%0A"+
-"Name: "+name+"%0A"+
-"WhatsApp: "+wa+"%0A"+
-"Email: "+email+"%0A"+
-"Address: "+address+"%0A%0A";
+"Order ID : "+orderID+"%0A"+
+"Name : "+name+"%0A"+
+"Phone : "+phone+"%0A"+
+"Email : "+email+"%0A"+
+"Address : "+address+"%0A%0A";
 
 cart.forEach(c=>{
-msg+=c.name+" RM"+c.price+"%0A";
+
+message +=
+c.name +
+" - RM" +
+c.price +
+"%0A";
+
 });
 
 window.open(
-"https://wa.me/601151453147?text="+msg,
+"https://wa.me/601151453147?text="+message,
 "_blank"
 );
 
